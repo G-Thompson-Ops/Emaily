@@ -5,5 +5,9 @@ app.get('/', (req, res) => {
     res.send ({ hi: 'there' });
 });
 
+app.get('/bye', (req, res) => {
+    res.send ({ bye: 'scrub' });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
