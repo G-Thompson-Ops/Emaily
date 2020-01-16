@@ -10,7 +10,8 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID, //can also use keys.googleClientID here is using keys.json method
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: '/auth/google/callback'
+            callbackURL: '/auth/google/callback',
+            proxy: true
         },
         accessToken => {
             console.log(accessToken);
@@ -27,3 +28,4 @@ app.get(
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
+app.enable("trust proxy");
