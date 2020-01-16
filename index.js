@@ -1,15 +1,15 @@
 const express = require('express');
 const passport = require('passport');
 const GoogleStratergy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys' || './config/keys_example');
+//const keys = require('./config/keys'); No longer required as we are using env-vars
 
 const app = express();
 
 passport.use(
     new GoogleStratergy(
         {
-            clientID: process.env.GOOGLE_CLIENT_ID || keys.googleClientID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || keys.googleClientSecret,
+            clientID: process.env.GOOGLE_CLIENT_ID, //can also use keys.googleClientID here is using keys.json method
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             callbackURL: '/auth/google/callback'
         },
         accessToken => {
