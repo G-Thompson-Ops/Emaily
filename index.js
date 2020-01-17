@@ -8,12 +8,14 @@ const app = express();
 passport.use(
     new GoogleStratergy(
         {
-            clientID: process.env.GOOGLE_CLIENT_ID, //can also use keys.googleClientID here is using keys.json method
+            clientID: process.env.GOOGLE_CLIENT_ID, //can also use keys.googleClientID here is using keys.js method
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             callbackURL: '/auth/google/callback',
         },
-        accessToken => {
-            console.log(accessToken);
+        (accessToken, refrestToken, profile, done) => {
+            console.log('Access Token: ', accessToken);
+            console.log('Refresh Token: ', refrestToken);
+            console.log('Profile: ', profile);
         }
     )
 );
