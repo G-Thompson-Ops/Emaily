@@ -2,5 +2,6 @@ module.exports = {
   googleClientID: "",
   googleClientSecret: "",
   facebookClientID: "",
-  facebookClientSecret: ""
+  facebookClientSecret: "",
+  mongoURI: ""
 };

@@ -1,5 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const keys = require("./config/keys"); //Only required when storing keys in keys.js
+require("./models/user");
 require("./services/passport");
+
+mongoose.connect(keys.mongoURI);
 
 const app = express();
 
