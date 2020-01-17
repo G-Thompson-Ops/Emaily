@@ -1,6 +1,6 @@
 module.exports = {
-    googleClientID: '',
-    googleClientSecret: '',
-    facebookClientID: '',
-    facebookClientSecret: ''
+  googleClientID: "",
+  googleClientSecret: "",
+  facebookClientID: "",
+  facebookClientSecret: ""
 };
