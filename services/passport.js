@@ -21,23 +21,18 @@ passport.use(
       clientSecret: keys.googleClientSecret, //process.env.GOOGLE_CLIENT_SECRET,s
       callbackURL: "/auth/google/callback"
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          //statement is true thus the user exists
-          done(null, existingUser);
-        } else {
-          //user doesn't exist - make a new one
-          new User({
-            googleId: profile.id,
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
-            email: profile._json.email
-          })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      const user = await new User({
+        googleId: profile.id,
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile._json.email
+      }).save();
+      done(null, user);
     }
   )
 );
